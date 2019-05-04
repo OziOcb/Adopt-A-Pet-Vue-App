@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <h1>Adopt a new best friend</h1>
+    {{ getAllCats.length }}
+    {{ animalsCount }}
+
     <button @click="togglePetForm" class="btn btn-primary">Add New</button>
 
     <b-form @submit.prevent="handleSubmit" v-if="showPetForm">
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'                     // importuje obiekt Actions z Vuex (w tym przypadku z pliku actions.js)
+import { mapActions, mapGetters } from 'vuex'         // importuje obiekt Actions i Getters z Vuex (w tym przypadku z plikow actions.js i getters.js)
 
 export default {
   name: 'home',
@@ -52,6 +55,12 @@ export default {
         species: null
       }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'animalsCount',
+      'getAllCats'
+    ])
   },
   methods: {
     ...mapActions([                                   // pobiera funkcje addPet z obiektu Actions (vuex)
