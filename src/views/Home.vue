@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'                     // importuje obiekt Actions z Vuex (w tym przypadku z pliku actions.js)
 
 export default {
   name: 'home',
@@ -54,22 +54,22 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
+    ...mapActions([                                   // pobiera funkcje addPet z obiektu Actions (vuex)
       'addPet'
     ]),
     togglePetForm() {
       this.showPetForm = !this.showPetForm
     },
     handleSubmit() {
-      const { species, age, name } = this.formData
-      const payload = {
+      const { species, age, name } = this.formData    // pobiera dane z data.formData
+      const payload = {                               // twozy z tych danych obiekt payload
         species,
         pet: {
           name,
           age
         }
       }
-      this.addPet(payload)
+      this.addPet(payload)                            // przekazuje obiekt payload do funkcji addPet, ktora znajduje sie w pliku actions.js (vuex)
 
       // reset form after submit
       this.formData = {
